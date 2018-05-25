@@ -12,7 +12,6 @@ def a1(cmdp,req={}):
 	data1 = {'command': cmdp,
 			 'nonce'  : int(time.time() * 1000)
 	}
-	#data = urllib.parse.urlencode(data).encode()
 	req['command'] = cmdp
 	req['nonce'] = int(time.time()*1000)
 	data = urllib.parse.urlencode(req).encode()
@@ -22,13 +21,7 @@ def a1(cmdp,req={}):
 			   'Content-Type': 'application/x-www-form-urlencoded'
 			  }
 	request = urllib.request.Request(url=api, data=data, headers=headers, method='POST')
-	#ret = urllib.request.urlopen(request).read().decode()
 	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
-	#rr=json.loads(text)#['LTC']
-	#with open("ff.txt", "w") as file:
-	#    print(*rr, file=file, sep="\n")
-	#rr=json.loads(ret.read())
-	#print(ret)
 	try:
 		rr=json.loads(ret.text)
 	except json.JsonDecodeError as error:
