@@ -245,12 +245,14 @@ def alg1(bir):
 	#last_type
 		if o3[i][7]==1:
 			f=1
-			am=rou(rou(o3[i][3])*rou(o3[i][5]))
-			#print('sell',o3[i][2],	rou(o3[i][3]),rou(o3[i][5]),am)
-			if qq >rou(o3[i][4]):
+			
+			qq=float (pl.tick(o3[i][2]))
+			if qq >rou(o3[i][3]):
 				price=rou(qq)
 			else:
-				price=rou(o3[i][4])
+				price=rou(o3[i][3])
+			am=rou(rou(o3[i][5])*price)
+			#print('sell',o3[i][2],	rou(o3[i][3]),rou(o3[i][5]),am)
 			ord=pl.sell(o3[i][2],price,rou(o3[i][5]))
 			ido=int(ord['orderNumber'])
 			o3[i][0]=ido
@@ -259,13 +261,14 @@ def alg1(bir):
 			# заменяем ido,amount_p на новое
 		else:
 			f=2
-			am=rou(rou(o3[i][6])/rou(o3[i][4]))
 			qq=float (pl.tick(o3[i][2]))
 			if qq <rou(o3[i][4]):
-				price=rou(qq)
+				price=rou(qq-(qq*0.03))
+				#на три процента меньше текущей цены
 			else:
 				price=rou(o3[i][4])
-			#print('buy',o3[i][2],rou(o3[i][4]),am)
+			am=rou(rou(o3[i][6])/price)
+			print('buy',o3[i][2],price,am)
 			ord=pl.buy(o3[i][2],price,am)
 			print(ord)
 			ido=int(ord['orderNumber'])
