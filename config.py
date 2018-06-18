@@ -2,16 +2,16 @@ import os
 #телеграмм api ключ
 tap=os.environ.get ('TELE_API')
 #телеграмм личный id
-tid='TELE_ID'
+tid=os.environ.get ('TELE_ID')
 #db
-dbname='DB_NAME'
-dbuser='DB_USER'
-dbhost='DB_HOST'
-dbpass='DB_PASS'
+dbname=os.environ.get ('DB_NAME')
+dbuser=os.environ.get ('DB_USER')
+dbhost=os.environ.get ('DB_HOST')
+dbpass=os.environ.get ('DB_PASS')
 #poloniex api 
-pap='POLO_API'
+pap=os.environ.get ('POLO_API')
 #poloniex api key
-pid='POLO_KEY'
+pid=os.environ.get ('POLO_KEY')
 
 #Общие настройки 
 #количесво последних ордеров которое мы проверяем. Если долго не было активности надо проверить больше ордеров
