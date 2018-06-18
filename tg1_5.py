@@ -341,7 +341,7 @@ def sell1(wo):
 	return (a)
 def get_mes():
 	data=get_updates_j()
-	#print(data)
+	print(data)
 	if len(data['result'])>0:
 		m_id=data['result'][-1]['message']['chat']['id']
 		m_txt=data['result'][-1]['message']['text']
