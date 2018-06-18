@@ -214,9 +214,20 @@ def alg01(bir):
 	#повтор
 def re_arg01(bir):
 	return (bir)
-def alg1(bir):
-	#берем id последнии 50 свершихся сделок
-	o1=last1(2,'all',config.n_ord_count,bir)
+def trade_ntf(n1):
+	global last_id
+	last_id=n1[0]
+	print(last_id)
+	return (n1)
+def pre_alg(bir):
+	#берем id n-последнии свершихся сделок
+	n1=last1(2,'all',config.n_ord_count,bir)
+	#f=trade_ntf(n1) 
+	re=alg1(bir,n1)
+	return re
+
+def alg1(bir,n1):
+	o1=n1
 	o2_="select ido,idp,pair,val_sell::text,val_buy::text,amount_c::text,amount_p::text,last_type from public.alg_data where alg=1 and birja="+"'"+"polo"+"'"+" and activ=1 and ido!=0"
 	a=bd.sql(o2_);dat=a;o2=[];i=0
 	while i<len(a):
@@ -264,7 +275,7 @@ def alg1(bir):
 			qq=float (pl.tick(o3[i][2]))
 			if qq <rou(o3[i][4]):
 				price=rou(qq-(qq*0.01))
-				#на три процента меньше текущей цены
+				#на один процента меньше текущей цены
 			else:
 				price=rou(o3[i][4])
 			am=rou(rou(o3[i][6])/price)
@@ -284,7 +295,7 @@ def alg1(bir):
 		print(u1)
 		dat=bd.sql(u1)
 	if len(c)>0:
-		send_m(config.tid,'trade')
+		send_m(config.tid,'trade в alg1')
 	return ('ok')
 	#повтор
 def sell0(wo):
@@ -383,7 +394,7 @@ def main():
 
 		if u==60:
 			#last1(2)
-			alg1('p')
+			pre_alg('p')
 
 			#alg1()
 			#dat=bd.sql('SELECT * FROM public.alg_data LIMIT 3')
