@@ -1,5 +1,6 @@
+import os
 #телеграмм api ключ
-tap='TELE_API'
+tap=os.environ.get ('TELE_API')
 #телеграмм личный id
 tid='TELE_ID'
 #db
