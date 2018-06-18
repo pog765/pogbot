@@ -215,6 +215,7 @@ def alg01(bir):
 def re_arg01(bir):
 	return (bir)
 def trade_ntf(n1):
+	#создать новою переменную
 	global last_id
 	last_id=n1[0]
 	print(last_id)
@@ -342,16 +343,18 @@ def sell1(wo):
 def get_mes():
 	data=get_updates_j()
 	print(data)
-	if len(data['result'])>0:
-		m_id=data['result'][-1]['message']['chat']['id']
-		m_txt=data['result'][-1]['message']['text']
-		m_upd=data['result'][-1]['update_id']
-		global last_id
-		if last_id!=m_upd:
-			last_id=m_upd
-			ms = {'chat_id': m_id, 'text': m_txt ,'upd_id':m_upd}
+	if data['ok']=='True':
+		if len(data['result'])>0:
+			m_id=data['result'][-1]['message']['chat']['id']
+			m_txt=data['result'][-1]['message']['text']
+			m_upd=data['result'][-1]['update_id']
+			global last_id
+			if last_id!=m_upd:
+				last_id=m_upd
+				ms = {'chat_id': m_id, 'text': m_txt ,'upd_id':m_upd}
 			return ms
-
+	
+	
 	return None
 def send_m (chat_id,text='wait'):
 	url1=url+'sendmessage?chat_id={}&text={}'.format(chat_id,text)
