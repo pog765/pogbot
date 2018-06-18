@@ -22,6 +22,7 @@ b=config.pid
 def get_updates_j():
 	url1 = url+'getUpdates'
 	#params = {'timeout': 100, 'offset': None}
+	print(url1)
 	r = requests.get(url1)#,params)
 	return r.json()
 def first_all (v1):
