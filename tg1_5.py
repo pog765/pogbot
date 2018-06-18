@@ -38,7 +38,7 @@ def first_all (v1):
 			3:'last'}
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
-		rst='привет'
+		rst='привет'+ config.tid + ' '+ v1['chat_id']
 	elif command=='alg':
 		if dlina!=6:
 			rst=str(dlina)+'Верный формат :\r\n*alg para sum n % %'
@@ -354,9 +354,7 @@ def get_mes():
 			if last_id!=m_upd:
 				last_id=m_upd
 				ms = {'chat_id': m_id, 'text': m_txt ,'upd_id':m_upd}
-			return ms
-	
-	
+				return ms
 	return None
 def send_m (chat_id,text='wait'):
 	url1=url+'sendmessage?chat_id={}&text={}'.format(chat_id,text)
