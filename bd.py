@@ -4,8 +4,8 @@ import config as c
 
 def sql(sql):
 	try:
-		conn = psycopg2.connect("dbname='"+c.dbname"' user='"+c.dbuser"'"
-								" host='"+c.dbhost"' password='"+c.dbpass"'")
+		conn = psycopg2.connect("dbname='"+c.dbname+"' user='"+c.dbuser+"'"
+								" host='"+c.dbhost+"' password='"+c.dbpass+"'")
 	except psycopg2.Error as err:
 		print("Connection error: {}".format(err))
 	try:
