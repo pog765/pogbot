@@ -216,7 +216,7 @@ def re_arg01(bir):
 	return (bir)
 def alg1(bir):
 	#берем id последнии 50 свершихся сделок
-	o1=last1(2,'all',50,bir)
+	o1=last1(2,'all',config.n_ord_count,bir)
 	o2_="select ido,idp,pair,val_sell::text,val_buy::text,amount_c::text,amount_p::text,last_type from public.alg_data where alg=1 and birja="+"'"+"polo"+"'"+" and activ=1 and ido!=0"
 	a=bd.sql(o2_);dat=a;o2=[];i=0
 	while i<len(a):
@@ -263,7 +263,7 @@ def alg1(bir):
 			f=2
 			qq=float (pl.tick(o3[i][2]))
 			if qq <rou(o3[i][4]):
-				price=rou(qq-(qq*0.03))
+				price=rou(qq-(qq*0.01))
 				#на три процента меньше текущей цены
 			else:
 				price=rou(o3[i][4])
