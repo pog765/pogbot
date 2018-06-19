@@ -228,15 +228,18 @@ def trade_ntf(n1,n2):
 	global ord_id
 	#print(ord_id)
 	#print(n1[0])
+	print(n1.index(ord))
 	if ord_id!=n1[0]:
 		if ord_id==0:
 			ord_id=n1[0]
 		else:
 			#узнаем сколько заявок до ord_id
-			
+			f1=n1.index(ord)
+			#срез до ord_id
+			n2=n2[:f1]
 			ord_id=n1[0]
 			
-			send_m(config.tid,'trade')
+			send_m(config.tid,'trade'+str(n2))
 
 		
 	return (n1)
