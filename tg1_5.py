@@ -228,7 +228,6 @@ def trade_ntf(n1,n2):
 	global ord_id
 	#print(ord_id)
 	#print(n1[0])
-	print(n1.index(ord_id))
 	if ord_id!=n1[0]:
 		if ord_id==0:
 			ord_id=n1[0]
