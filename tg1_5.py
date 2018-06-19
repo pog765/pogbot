@@ -16,6 +16,7 @@ url = 'https://api.telegram.org/bot'+str(config.tap)+':AAGRl3CVErK8dVrvvoJustYAB
 global last_id #номер последней записи в чате телеги
 global cou
 global ord_id #номер последнего выполненного ордера 
+last_id=0
 ord_id=0
 a=config.pap
 b=config.pid
