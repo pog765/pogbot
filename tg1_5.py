@@ -38,7 +38,7 @@ def first_all (v1):
 			3:'last'}
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
-		rst='привет'+ config.tid + ' '+ v1['chat_id']
+		rst='привет'+ str(config.tid) + ' '+ str(v1['chat_id'])
 	elif command=='alg':
 		if dlina!=6:
 			rst=str(dlina)+'Верный формат :\r\n*alg para sum n % %'
