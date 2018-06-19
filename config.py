@@ -2,7 +2,7 @@ import os
 #телеграмм api ключ
 tap=os.environ.get ('TELE_API')
 #телеграмм личный id
-tid=os.environ.get ('TELE_ID')
+tid=int(os.environ.get ('TELE_ID'))
 #db
 dbname=os.environ.get ('DB_NAME')
 dbuser=os.environ.get ('DB_USER')
