@@ -13,9 +13,10 @@ from time import sleep
 
 
 url = 'https://api.telegram.org/bot'+str(config.tap)+':AAGRl3CVErK8dVrvvoJustYAB_Z6C8seSu4/'
-global last_id
+global last_id #номер последней записи в чате телеги
 global cou
-last_id=0
+global ord_id #номер последнего выполненного ордера 
+ord_id=0
 a=config.pap
 b=config.pid
 
@@ -38,7 +39,7 @@ def first_all (v1):
 			3:'last'}
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
-		rst='привет'+ str(config.tid) + ' '+ str(v1['chat_id'])
+		rst='привет'
 	elif command=='alg':
 		if dlina!=6:
 			rst=str(dlina)+'Верный формат :\r\n*alg para sum n % %'
@@ -128,19 +129,23 @@ def last1_1(r):
 	return (g)
 def last1_2(r):
 	i=0
-	g=[]
+	g1=[]
+	g2=[]
 	global k
 	k=0
 	for key in r.keys():
 		while i<len(r[key]):
-			sl=r[key][i]['orderNumber']
-			g.append(sl)
+			s1=r[key][i]['orderNumber']
+			s2=str(key)+' '+r[key][i]['total']+'\r\nкол-во: '+r[key][i]['amount']+'\r\n'+r[key][i]['type']+' цена: '+r[key][i]['rate']+'\r\nord '+r[key][i]['orderNumber']+'\r\n'
+			
+			g1.append(s1)
+			g2.append(s2)
 			i=i+1
 		i=0
 		#"orderNumber"=ido
 		k=k+1
 	#print(g)
-	return (g)
+	return (g1)
 def cre_ord(wo,dlina,command):
 	if dlina==1:
 		rst='Верный формат :\r\n*sell valuta price btc n\r\nЕсли btc нет берем 0.00010100 btc, если 0 значит берем n(количество монет),торг к баку(u_ иначе только валюта (к бтс))'
@@ -217,14 +222,23 @@ def re_arg01(bir):
 	return (bir)
 def trade_ntf(n1):
 	#создать новою переменную
-	global last_id
-	last_id=n1[0]
-	print(last_id)
+	#при доавление биржы переменную нужно перобразовать в массив
+	global ord_id
+	print(ord_id)
+	print(n1[0])
+	if ord_id!=n1[0]:
+		if ord_id==0:
+			ord_id=n1[0]
+		else:
+			send_m(config.tid,'trade')
+			ord_id=n1[0]
+		
 	return (n1)
+
 def pre_alg(bir):
 	#берем id n-последнии свершихся сделок
 	n1=last1(2,'all',config.n_ord_count,bir)
-	#f=trade_ntf(n1) 
+	f=trade_ntf(n1) 
 	re=alg1(bir,n1)
 	return re
 
@@ -345,7 +359,7 @@ def get_mes():
 	data=get_updates_j()
 	
 	if data['ok']==True:
-		print(data)
+		#print(data)
 		if len(data['result'])>0:
 			m_id=data['result'][-1]['message']['chat']['id']
 			m_txt=data['result'][-1]['message']['text']
