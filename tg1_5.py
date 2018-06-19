@@ -78,9 +78,9 @@ def first_all (v1):
 			par=wo[2]
 			par=par.upper()
 			# par='all'
-		rst=last1(1,par,cou,bir)
+		rst,g2=last1(1,par,cou,bir)
 	else:
-		rst='Текущие команды:\r\nAlg\r\nalg01\r\nlast\r\nsell\r\nbuy\r\n\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance'
+		rst='Текущие команды:\r\nAlg\r\nalg01\r\nlast\r\nsell\r\nbuy\r\n\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance,K-kucoin'
 	return (rst)
 def last1(typ,pair,cou,bir):
 	if bir=='p':
@@ -105,17 +105,18 @@ def last1(typ,pair,cou,bir):
 	r=eval(q)
 
 	if typ==1:
-		g=last1_1(r)
+		g1=last1_1(r)
+		g2=[]
 	else:
-		g=last1_2(r)
-	return (g)
+		g1,g2=last1_2(r)
+	return (g1,g2)
 def last1_1(r):
 	i=0
 	g=str()
 	global k
 	k=0
-	print(r)
-	send_m(config.tid,r)
+	#print(r)
+	#send_m(config.tid,r)
 
 	for key in r.keys():
 
@@ -146,7 +147,7 @@ def last1_2(r):
 		#"orderNumber"=ido
 		k=k+1
 	#print(g)
-	return (g1)
+	return (g1,g2)
 def cre_ord(wo,dlina,command):
 	if dlina==1:
 		rst='Верный формат :\r\n*sell valuta price btc n\r\nЕсли btc нет берем 0.00010100 btc, если 0 значит берем n(количество монет),торг к баку(u_ иначе только валюта (к бтс))'
@@ -221,26 +222,31 @@ def alg01(bir):
 	#повтор
 def re_arg01(bir):
 	return (bir)
-def trade_ntf(n1):
+def trade_ntf(n1,n2):
 	#создать новою переменную
 	#при доавление биржы переменную нужно перобразовать в массив
 	global ord_id
-	print(ord_id)
-	print(n1[0])
+	#print(ord_id)
+	#print(n1[0])
 	if ord_id!=n1[0]:
 		if ord_id==0:
 			ord_id=n1[0]
 		else:
-			send_m(config.tid,'trade')
+			#узнаем сколько заявок до ord_id
+			
 			ord_id=n1[0]
+			
+			send_m(config.tid,'trade')
+
 		
 	return (n1)
 
 def pre_alg(bir):
 	#берем id n-последнии свершихся сделок
-	n1=last1(2,'all',config.n_ord_count,bir)
-	f=trade_ntf(n1) 
+	n1,n2=last1(2,'all',config.n_ord_count,bir)
+	
 	re=alg1(bir,n1)
+	f=trade_ntf(n1,n2) 
 	return re
 
 def alg1(bir,n1):
@@ -411,7 +417,6 @@ def main():
 		u=u+5 #примерный подсчет времени по циклу
 
 		if u==60:
-			#last1(2)
 			pre_alg('p')
 
 			#alg1()
