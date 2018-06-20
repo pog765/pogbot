@@ -237,8 +237,11 @@ def trade_ntf(n1,n2):
 			#срез до ord_id
 			n2=n2[:f1]
 			ord_id=n1[0]
-			
-			send_m(config.tid,'trade'+str(n2))
+			i=0
+			while i<len(n2):
+				y=y+n2[i]
+				i+=1
+			send_m(config.tid,'trade'+y)
 
 		
 	return (n1)
