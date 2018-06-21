@@ -14,7 +14,7 @@ def a1(cmdp,req={}):
 	}
 	#data = urllib.parse.urlencode(data).encode()
 	req['command'] = cmdp
-	req['nonce'] = int(time.time()*1000)
+	req['nonce'] = int(time.time()*2000)
 	data = urllib.parse.urlencode(req).encode()
 	signature = hmac.new(secret.encode(), data, hashlib.sha512)
 	headers = {'Key' : key,
