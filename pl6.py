@@ -14,7 +14,7 @@ def a1(cmdp,req={}):
 	}
 	#data = urllib.parse.urlencode(data).encode()
 	req['command'] = cmdp
-	req['nonce'] = int(time.time()*2000)
+	req['nonce'] = int(time.time()*2000) # было 1000, паоменял в надежде убрать баг heroku  по таймауту
 	data = urllib.parse.urlencode(req).encode()
 	signature = hmac.new(secret.encode(), data, hashlib.sha512)
 	headers = {'Key' : key,
