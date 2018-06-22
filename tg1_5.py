@@ -35,7 +35,7 @@ def first_all (v1):
 	bir=command[0]
 	command=command[1:10]
 	dlina=len(wo)
-	s_comm={1:'alg',
+	cm={1:'alg',
 		2:'alg1',
 		3:'alg01',
 		4:'log1',
@@ -49,28 +49,28 @@ def first_all (v1):
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
 		rst='привет'
-	elif command=='alg':
+	elif command==cm[1]:
 		if dlina!=6:
 			rst=str(dlina)+'Верный формат :\r\n*alg para sum n % %'
 		else:
 			rst=sell1(wo)
-	elif command=='alg1':
+	elif command==cm[2]:
 		rst=pl.a1('returnBalances')
 		alg1(bir)
-	elif command=='alg01':
+	elif command==cm[3]:
 		rst=pl.a1('returnBalances')
 		alg01(bir)
-	elif command=='log1':
+	elif command==cm[4]:
 		f = open("log1.txt", 'r')
 		rst=f.read()
-	elif command=='log2':
+	elif command==cm[5]:
 		f = open("log2.txt", 'r')
 		rst=f.read()
-	elif command=='elect':
+	elif command==cm[6]:
 		rst=bd.sql(v2)
-	elif command=='sell' or command=='buy':
+	elif command==cm[7] or command==cm[8]:
 		rst=cre_ord(wo,dlina,command)
-	elif command=='last':
+	elif command==cm[9]:
 		if dlina<2:
 			cou=10
 		else:
@@ -88,7 +88,10 @@ def first_all (v1):
 			# par='all'
 		rst,g2=last1(1,par,cou,bir)
 	else:
-		rst='Текущие команды:\r\nAlg\r\nalg01\r\nlast\r\nsell\r\nbuy\r\n\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance,K-kucoin'
+		f=str()
+		for key in cm:
+    			f=f+cm[key]+'\r\n'
+		rst='Текущие команды:\r\n'+f+'\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance,K-kucoin'
 	return (rst)
 def last1(typ,pair,cou,bir):
 	if bir=='p':
