@@ -26,20 +26,9 @@ def a1(cmdp,req={}):
 
 	try:
 		ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
-	except Exception:
-        	pass
-	#rr=json.loads(text)#['LTC']
-	#with open("ff.txt", "w") as file:
-	#    print(*rr, file=file, sep="\n")
-	#rr=json.loads(ret.read())
-	#print(ret)
-	try:
 		rr=json.loads(ret.text)
-	except json.JsonDecodeError as error:
-		if (error.msg.startswith("Expecting") and error.pos == 0):
-			pass
-		else:
-			raise
+	except Exeption:
+		rr=[] 
 	return rr
 
 def hist(currencyPair,limit):
