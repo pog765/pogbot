@@ -57,7 +57,7 @@ def first_all (v1):
 	elif command==cm[2]:
 		rst=pl.a1('returnBalances')
 		alg1(bir)
-	elif command==cm[3]':
+	elif command==cm[3]:
 		rst=pl.a1('returnBalances')
 		alg01(bir)
 	elif command==cm[4]:
