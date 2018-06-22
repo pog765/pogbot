@@ -28,7 +28,7 @@ def a1(cmdp,req={}):
 		ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
 		rr=json.loads(ret.text)
 	except Exeption:
-		rr=[] 
+		rr={}
 	return rr
 
 def hist(currencyPair,limit):
