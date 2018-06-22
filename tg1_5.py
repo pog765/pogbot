@@ -104,8 +104,9 @@ def last1(typ,pair,cou,bir):
 		r0=pl.hist(pair,cou)
 
 	g=str()
+	print(r0)
 	q0=json.dumps(r0)
-	#print(q0)
+	print(q0)
 	if pair !='all':
 		q=q0.replace('[{','{"'+pair+'":[{')
 		q=q.replace('}]','}]}')
