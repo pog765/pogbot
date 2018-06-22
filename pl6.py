@@ -23,7 +23,11 @@ def a1(cmdp,req={}):
 			  }
 	request = urllib.request.Request(url=api, data=data, headers=headers, method='POST')
 	#ret = urllib.request.urlopen(request).read().decode()
-	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
+
+	try:
+		ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
+	except Exception:
+        	pass
 	#rr=json.loads(text)#['LTC']
 	#with open("ff.txt", "w") as file:
 	#    print(*rr, file=file, sep="\n")
