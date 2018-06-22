@@ -265,7 +265,10 @@ def pre_alg(bir):
 	n1,n2=last1(2,'all',config.n_ord_count,bir)
 	
 	re=alg1(bir,n1)
-	f=trade_ntf(n1,n2) 
+	try:
+		f=trade_ntf(n1,n2) 
+	except:
+		pass
 	return re
 
 def alg1(bir,n1):
