@@ -29,6 +29,7 @@ def a1(cmdp,req={}):
 		rr=json.loads(ret.text)
 	except Exeption:
 		rr={}
+		#{'BTC_Z': [{'globalTradeID': 379522526}]}
 	return rr
 
 def hist(currencyPair,limit):
