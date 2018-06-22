@@ -238,6 +238,7 @@ def trade_ntf(n1,n2):
 			n2=n2[:f1]
 			ord_id=n1[0]
 			i=0
+			y=0
 			while i<len(n2):
 				y=y+n2[i]
 				i+=1
