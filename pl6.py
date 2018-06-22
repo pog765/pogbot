@@ -27,7 +27,7 @@ def a1(cmdp,req={}):
 	try:
 		ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
 		rr=json.loads(ret.text)
-	except Exeption:
+	except Exception:
 		rr={}
 		#{'BTC_Z': [{'globalTradeID': 379522526}]}
 	return rr
