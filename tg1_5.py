@@ -36,8 +36,16 @@ def first_all (v1):
 	command=command[1:10]
 	dlina=len(wo)
 	s_comm={1:'alg',
-			2:'bal',
-			3:'last'}
+		2:'alg1',
+		3:'alg01',
+		4:'log1',
+		5:'log2',
+		6:'elect',
+		7:'sell',
+		8:'buy',
+		9:'last',
+		10:''
+	       }
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
 		rst='привет'
