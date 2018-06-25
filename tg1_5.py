@@ -240,8 +240,8 @@ def trade_ntf(n1,n2):
 	#при доавление биржы переменную нужно перобразовать в массив
 	global ord_id
 	#print(ord_id)
-	print(type(n1))
-	print(n1)
+	#print(type(n1))
+	#print(n1)
 	if ord_id!=n1[0]:
 		if ord_id==0:
 			ord_id=n1[0]
@@ -266,7 +266,8 @@ def pre_alg(bir):
 	n1,n2=last1(2,'all',config.n_ord_count,bir)
 	
 	re=alg1(bir,n1)
-	f=trade_ntf(n1,n2) 
+	if len(n1)!=0:
+		f=trade_ntf(n1,n2) 
 	try:
 		
 		pass
