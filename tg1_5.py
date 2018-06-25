@@ -240,6 +240,7 @@ def trade_ntf(n1,n2):
 	#при доавление биржы переменную нужно перобразовать в массив
 	global ord_id
 	#print(ord_id)
+	print(type(n1)
 	print(n1)
 	if ord_id!=n1[0]:
 		if ord_id==0:
