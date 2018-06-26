@@ -36,7 +36,7 @@ def first_all (v1):
 	command=command[1:10]
 	dlina=len(wo)
 	cm={1:'alg',
-		2:'alg1',
+		2:'bal',
 		3:'alg01',
 		4:'log1',
 		5:'log2',
@@ -44,7 +44,7 @@ def first_all (v1):
 		7:'sell',
 		8:'buy',
 		9:'last',
-		10:'bal'
+		10:''
 	       }
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
@@ -56,7 +56,7 @@ def first_all (v1):
 			rst=sell1(wo)
 	elif command==cm[2]:
 		rst=pl.a1('returnBalances')
-		alg1(bir)
+		#alg1(bir)
 	elif command==cm[3]:
 		rst=pl.a1('returnBalances')
 		alg01(bir)
@@ -87,8 +87,8 @@ def first_all (v1):
 			par=par.upper()
 			# par='all'
 		rst,g2=last1(1,par,cou,bir)
-	elif command==cm[10]:
-		rst=pl.ret_bal()
+	#elif command==cm[10]:
+	#	rst=pl.ret_bal()
 	else:
 		f=str()
 		for key in cm:
