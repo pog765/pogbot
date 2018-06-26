@@ -49,5 +49,10 @@ def tick(par):
 	ee=requests.get('https://poloniex.com/public?command=returnTicker')
 	rr=json.loads(ee.text)
 	rr=rr[par]['last']
-	print(rr)
+	#print(rr)
 	return(rr)
+
+def ret_bal():
+	a2=a1('returnBalances')
+	return a2
+
