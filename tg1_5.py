@@ -44,7 +44,7 @@ def first_all (v1):
 		7:'sell',
 		8:'buy',
 		9:'last',
-		10:''
+		10:'bal'
 	       }
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
@@ -87,6 +87,8 @@ def first_all (v1):
 			par=par.upper()
 			# par='all'
 		rst,g2=last1(1,par,cou,bir)
+	elif command==cm[10]:
+		rst=pl.ret_bal()
 	else:
 		f=str()
 		for key in cm:
