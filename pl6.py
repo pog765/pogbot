@@ -54,7 +54,6 @@ def tick(par):
 	r0=json.loads(ee.text)
 	if par=='all': 
 		r1=r0
-		print(r1)
 	else:
 		r1=r0[par]['last']
 	return(r1)
