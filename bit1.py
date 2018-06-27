@@ -4,111 +4,104 @@ import json
 import time
 import hmac
 import hashlib
-import config
+
+class bittrex(object):
+
+    def __init__(self, key, secret):
+        self.key = key
+        self.secret = secret
+        self.public = ['getmarkets', 'getcurrencies', 'getticker', 'getmarketsummaries', 'getmarketsummary', 'getorderbook', 'getmarkethistory']
+        self.market = ['buylimit', 'buymarket', 'selllimit', 'sellmarket', 'cancel', 'getopenorders']
+        self.account = ['getbalances', 'getbalance', 'getdepositaddress', 'withdraw', 'getorder', 'getorderhistory', 'getwithdrawalhistory', 'getdeposithistory']
 
 
-key =btap
-secret =btid
-public = ['getmarkets', 'getcurrencies', 'getticker', 'getmarketsummaries', 'getmarketsummary', 'getorderbook', 'getmarkethistory']
-market = ['buylimit', 'buymarket', 'selllimit', 'sellmarket', 'cancel', 'getopenorders']
-account = ['getbalances', 'getbalance', 'getdepositaddress', 'withdraw', 'getorder', 'getorderhistory', 'getwithdrawalhistory', 'getdeposithistory']
+    def query(self, method, values={}):
+        if method in self.public:
+            url = 'https://bittrex.com/api/v1.1/public/'
+        elif method in self.market:
+            url = 'https://bittrex.com/api/v1.1/market/'
+        elif method in self.account:
+            url = 'https://bittrex.com/api/v1.1/account/'
+        else:
+            return 'Something went wrong, sorry.'
+
+        url += method + '?' + urlencode(values)
+        if method not in self.public:
+            url += '&apikey=' + self.key
+            url += '&nonce=' + str(int(time.time()))
+            signature = hmac.new(self.secret.encode(), url.encode(), hashlib.sha512).hexdigest()
+            headers = {'apisign': signature}
+        else:
+            headers = {}
+
+        req = urllib.request.Request(url, headers=headers)
+        response = json.loads(urllib.request.urlopen(req).read())
+
+        if response["result"]:
+            return response["result"]s
+        else:
+            return response["message"]
 
 
-def query( method, values={}):
-    if method in public:
-        url = 'https://bittrex.com/api/v1.1/public/'
-    elif method in market:
-        url = 'https://bittrex.com/api/v1.1/market/'
-    elif method in account:
-        url = 'https://bittrex.com/api/v1.1/account/'
-    else:
-        return 'Something went wrong, sorry.'
+    def getmarkets(self):
+        return self.query('getmarkets')
 
-    url += method + '?' + urlencode(values)
+    def getcurrencies(self):
+        return self.query('getcurrencies')
 
-    if method not in public:
-        url += '&apikey=' + key
-        url += '&nonce=' + str(int(time.time()))
-        #url=url.encode()
-        signature = hmac.new(secret.encode(), url, hashlib.sha512).hexdigest()
-        headers = {'apisign': signature}
-    else:
-        headers = {}
+    def getticker(self, market):
+        return self.query('getticker', {'market': market})
 
-    req = urllib.request.Request(url, headers=headers)
-    response = json.loads(urllib.request.urlopen(req).read())
-    print(response)
-    if response["result"]:
-        return response["result"]
-    else:
-        return response["message"]
+    def getmarketsummaries(self):
+        return self.query('getmarketsummaries')
 
+    def getmarketsummary(self, market):
+        return self.query('getmarketsummary', {'market': market})
 
-def getmarkets():
-    return query('getmarkets')
+    def getorderbook(self, market, type, depth=20):
+        return self.query('getorderbook', {'market': market, 'type': type, 'depth': depth})
 
+    def getmarkethistory(self, market, count=20):
+        return self.query('getmarkethistory', {'market': market, 'count': count})
 
+    def buylimit(self, market, quantity, rate):
+        return self.query('buylimit', {'market': market, 'quantity': quantity, 'rate': rate})
 
-def getcurrencies():
-    return query('getcurrencies')
+    def buymarket(self, market, quantity):
+        return self.query('buymarket', {'market': market, 'quantity': quantity})
 
-def getticker( market):
-    return query('getticker', {'market': market})
+    def selllimit(self, market, quantity, rate):
+        return self.query('selllimit', {'market': market, 'quantity': quantity, 'rate': rate})
 
-def getmarketsummaries():
-    return query('getmarketsummaries')
+    def sellmarket(self, market, quantity):
+        return self.query('sellmarket', {'market': market, 'quantity': quantity})
 
-def getmarketsummary( market):
-    return query('getmarketsummary', {'market': market})
+    def cancel(self, uuid):
+        return self.query('cancel', {'uuid': uuid})
 
-def getorderbook( market, type, depth=20):
-    return query('getorderbook', {'market': market, 'type': type, 'depth': depth})
+    def getopenorders(self, market):
+        return self.query('getopenorders', {'market': market})
 
-    def getmarkethistory( market, count=20):
-        return query('getmarkethistory', {'market': market, 'count': count})
+    def getbalances(self):
+        return self.query('getbalances')
 
-    def buylimit( market, quantity, rate):
-        return query('buylimit', {'market': market, 'quantity': quantity, 'rate': rate})
+    def getbalance(self, currency):
+        return self.query('getbalance', {'currency': currency})
 
-    def buymarket( market, quantity):
-        return query('buymarket', {'market': market, 'quantity': quantity})
+    def getdepositaddress(self, currency):
+        return self.query('getdepositaddress', {'currency': currency})
 
-    def selllimit( market, quantity, rate):
-        return query('selllimit', {'market': market, 'quantity': quantity, 'rate': rate})
+    def withdraw(self, currency, quantity, address):
+        return self.query('withdraw', {'currency': currency, 'quantity': quantity, 'address': address})
 
-    def sellmarket( market, quantity):
-        return query('sellmarket', {'market': market, 'quantity': quantity})
+    def getorder(self, uuid):
+        return self.query('getorder', {'uuid': uuid})
 
-    def cancel( uuid):
-        return query('cancel', {'uuid': uuid})
+    def getorderhistory(self, market, count):
+        return self.query('getorderhistory', {'market': market, 'count': count})
 
-    def getopenorders( market):
-        return query('getopenorders', {'market': market})
+    def getwithdrawalhistory(self, currency, count):
+        return self.query('getwithdrawalhistory', {'currency': currency, 'count': count})
 
-def getbalances():
-    return query('getbalances')
-
-    def getbalance( currency):
-        return query('getbalance', {'currency': currency})
-
-    def getdepositaddress( currency):
-        return query('getdepositaddress', {'currency': currency})
-
-    def withdraw( currency, quantity, address):
-        return query('withdraw', {'currency': currency, 'quantity': quantity, 'address': address})
-
-    def getorder( uuid):
-        return query('getorder', {'uuid': uuid})
-
-    def getorderhistory( market, count):
-        return query('getorderhistory', {'market': market, 'count': count})
-
-    def getwithdrawalhistory( currency, count):
-        return query('getwithdrawalhistory', {'currency': currency, 'count': count})
-
-    def getdeposithistory( currency, count):
-        return query('getdeposithistory', {'currency': currency, 'count': count})
-
-#print(getmarkets())
-print(getticker('BTC-GLD'))
-print(getbalances())
+    def getdeposithistory(self, currency, count):
+        return self.query('getdeposithistory', {'currency': currency, 'count': count})
