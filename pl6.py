@@ -23,14 +23,16 @@ def a1(cmdp,req={}):
 			  }
 	request = urllib.request.Request(url=api, data=data, headers=headers, method='POST')
 	#ret = urllib.request.urlopen(request).read().decode()
-
-	try:
-		ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
-		rr=json.loads(ret.text)
-	except Exception:
-		rr={}
-		raise
+	
+	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
+	rr=json.loads(ret.text)
+	#try:
+	#	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
+	#	rr=json.loads(ret.text)
+	#except Exception:
+	#	rr={}
 		#{'BTC_Z': [{'globalTradeID': 379522526}]}
+		
 	return rr
 
 def hist(currencyPair,limit):
