@@ -61,18 +61,17 @@ def tick(par):
 
 def ret_bal():
 	f=a1('returnBalances')
-	f1=[]
+	f1=tick('all')
 	us=['BTC'] # что показываем в паре к баксу
 	a3=str()
 	for key in f.keys():
-    		if float(f[key])>0:
-        		if key=='BTC':
-            			pair='USDT_'+key.upper()
-        		else:
-            			pair='BTC_'+key.upper()
-        		for key1 in f1.keys():
-            			if key1==pair:
-                			a3=a3+key1+' '+f1[key1] + '\r\n'
-		
+		if float(f[key])>0:
+			if key=='BTC':
+				pair='USDT_'+key.upper()
+			else:
+				pair='BTC_'+key.upper()
+			for key1 in f1.keys():
+				if key1==pair:
+					a3=a3+key1+' ls:'+f1[key1]['last'] + '\r\n'+'% 24:'+f1[key1]['percentChange'] + '\r\n'+'/ 24:'+f1[key1]['high24hr'] + '\r\n'+'\ 24:'+f1[key1]['low24hr'] + '\r\n'
 	return a3
 
