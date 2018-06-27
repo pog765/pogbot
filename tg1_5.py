@@ -55,7 +55,9 @@ def first_all (v1):
 		else:
 			rst=sell1(wo)
 	elif command==cm[2]:
+		print('bal')
 		rst=pl.a1('returnBalances')
+		
 		#alg1(bir)
 	elif command==cm[3]:
 		rst=pl.a1('returnBalances')
