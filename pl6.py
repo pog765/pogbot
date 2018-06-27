@@ -51,22 +51,28 @@ def sell( currency_pair, rate, amount):
 
 def tick(par):
 	ee=requests.get('https://poloniex.com/public?command=returnTicker')
-	rr=json.loads(ee.text)
-	rr=rr[par]['last']
-	#print(rr)
-	return(rr)
+	r0=json.loads(ee.text)
+	if par='all': 
+		r1=r0
+	else:
+		r1=r0[par]['last']
+	print(r1)
+	return(r1)
 
 def ret_bal():
-	a2=a1('returnBalances')
+	f=a1('returnBalances')
+	f1=[]
 	us=['BTC'] # что показываем в паре к баксу
 	a3=str()
-	#for key in a2.keys():
-		#if key=='BTC':
-			#key='USDT_'+val.upper()
-		##elif key in us:
-		#else:
-			#key='BTC_'+val.upper()
-		#a3=a3+key+' '+str(tick(key)) + '\r\n'
+	for key in f.keys():
+    		if float(f[key])>0:
+        		if key=='BTC':
+            			pair='USDT_'+key.upper()
+        		else:
+            			pair='BTC_'+key.upper()
+        		for key1 in f1.keys():
+            			if key1==pair:
+                			a3=a3+key1+' '+f1[key1] + '\r\n'
 		
 	return a3
 
