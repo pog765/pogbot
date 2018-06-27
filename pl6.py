@@ -52,7 +52,7 @@ def sell( currency_pair, rate, amount):
 def tick(par):
 	ee=requests.get('https://poloniex.com/public?command=returnTicker')
 	r0=json.loads(ee.text)
-	if par='all': 
+	if par=='all': 
 		r1=r0
 		print(r1)
 	else:
