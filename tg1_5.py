@@ -56,11 +56,9 @@ def first_all (v1):
 			rst=sell1(wo)
 	elif command==cm[2]:
 		
-		f=pl.a1('returnBalances')
-		g=[]
-		for key in f.keys():
-    			if float(f[key])>0:
-        			g.append(key)
+		#f=pl.a1('returnBalances')
+		#g=ret_bal()
+		g=pl.tick('all')
 		rst=g
 		print(rst)
 		#alg1(bir)
