@@ -55,12 +55,17 @@ def first_all (v1):
 		else:
 			rst=sell1(wo)
 	elif command==cm[2]:
-		print('bal')
-		rst=pl.a1('returnBalances')
 		
+		f=pl.a1('returnBalances')
+		g=[]
+		for key in f.keys():
+    			if float(f[key])>0:
+        			g.append(key)
+		rst=g
+		print(rst)
 		#alg1(bir)
 	elif command==cm[3]:
-		rst=pl.a1('returnBalances')
+		#rst=pl.a1('returnBalances')
 		alg01(bir)
 	elif command==cm[4]:
 		f = open("log1.txt", 'r')
