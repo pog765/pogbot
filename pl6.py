@@ -26,6 +26,7 @@ def a1(cmdp,req={}):
 	
 	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
 	rr=json.loads(ret.text)
+	print(rr)
 	#try:
 	#	ret = requests.post('https://poloniex.com/tradingApi', data=data, headers=headers)
 	#	rr=json.loads(ret.text)
