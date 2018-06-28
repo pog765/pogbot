@@ -1,7 +1,9 @@
-from pl8 import bittrex
+from bit1 import bittrex as bit
+import pl6 as pl
+import config as cf
 
 # Get these from https://bittrex.com/Account/ManageApiKey
-api = bittrex(api, key)
+api = bit(cf.bitap, cf.bitid)
 
 # Market to trade at
 trade = 'BTC'
