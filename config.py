@@ -12,6 +12,10 @@ dbpass=os.environ.get ('DB_PASS')
 pap=os.environ.get ('POLO_API')
 #poloniex api key
 pid=os.environ.get ('POLO_KEY')
+#bittrex api 
+bitap=os.environ.get ('BIT_API')
+#bittrex api key
+bitid=os.environ.get ('BIT_KEY')
 
 #Общие настройки 
 #количесво последних ордеров которое мы проверяем. Если долго не было активности надо проверить больше ордеров
