@@ -38,7 +38,7 @@ class bittrex(object):
         response = json.loads(urllib.request.urlopen(req).read())
 
         if response["result"]:
-            return response["result"]s
+            return response["result"]
         else:
             return response["message"]
 
