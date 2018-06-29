@@ -23,7 +23,7 @@ def dg(currency):
 #покупка продажа
 
 #свершившиеся сделки
-b2=getorderhistory()
+b2=api.getorderhistory()
 p2=pl.hist(pair,cou)
 
 
