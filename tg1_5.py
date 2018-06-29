@@ -4,6 +4,7 @@ import datetime
 import sys, traceback
 import config
 import pl6 as pl
+import all_exh as ex
 import bd as bd
 from time import sleep
 
@@ -44,7 +45,8 @@ def first_all (v1):
 		7:'sell',
 		8:'buy',
 		9:'last',
-		10:'price'
+		10:'price',
+	        11:'ord'
 	       }
 	#\r\n - перевод строки внутри сообщения
 	if v1['chat_id']!=config.tid:
@@ -94,6 +96,9 @@ def first_all (v1):
 		rst,g2=last1(1,par,cou,bir)
 	elif command==cm[10]:
 		rst=pl.ret_bal()
+	elif command==cm[11]:
+		rst='ок'
+		ww=ex.opord(bir,'all')	
 	else:
 		f=str()
 		for key in cm:
