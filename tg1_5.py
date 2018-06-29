@@ -354,6 +354,17 @@ def alg1(bir,n1):
 		send_m(config.tid,'trade в alg1')
 	return ('ok')
 	#повтор
+	
+def alg02():
+	#пампадампа включение/отключение/перезапуск(с учетем процента) монеты 
+	
+	return ('ok')	
+	
+def alg2():
+	#пампадампа
+	
+	return ('ok')
+
 def sell0(wo):
 	n1= float (wo[2])
 	n2= int (wo[3])
