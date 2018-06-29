@@ -40,6 +40,10 @@ def hist(currencyPair,limit):
 	a2=a1('returnTradeHistory',{"currencyPair":currencyPair,"start":10000,"limit":limit})
 	return a2
 
+def opord(currencyPair):
+	a2=a1('returnOpenOrders',{"currencyPair":currencyPair})
+	return a2
+
 def buy(currency_pair, rate, amount):
 	a3=a1('buy', {"currencyPair": currency_pair, "rate": rate, "amount": amount})
 	return a3
