@@ -31,11 +31,11 @@ def hist(pair):
 
 #открытые сделки
 def opord(bir,pair):
-  if bir=='T':
+  if bir=='t':
     b3=api.getopenorders(pair)
     ext=b3
     
-  elif bir=='P':
+  elif bir=='p':
     p3=pl.opord(pair)
     ext=p3
   print (ext)
