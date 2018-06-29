@@ -23,9 +23,11 @@ def dg(currency):
 #покупка продажа
 
 #свершившиеся сделки
-b2=api.getorderhistory()
-p2=pl.hist(pair,cou)
-
+def hist(pair)
+  b2=api.getorderhistory()
+  p2=pl.hist(pair,cou)
+  ext=0
+  return ext
 
 #открытые сделки
 def opord(bir,pair):
@@ -40,9 +42,15 @@ def opord(bir,pair):
   return (ext)
 
 #текушие цены
-b4=api.getticker()
-p4=pl.tick(par)
+def tick(pair):
+  b4=api.getticker()
+  p4=pl.tick(pair)
+  ext=0
+  return ext
 
-#все свои монеты 
-b5=api.getbalances(currency)
-p5=pl.a1('returnBalances')
+#все свои монеты
+def bal():
+  b5=api.getbalances(currency)
+  p5=pl.a1('returnBalances')
+  ext=0
+  return ext
