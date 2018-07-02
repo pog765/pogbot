@@ -76,6 +76,7 @@ def ret_bal():
 			for key1 in f1.keys():
 				if key1==pair:
 					pr=round(float(f1[key1]['percentChange'])*100,2)
-					a3=a3+key1+' ls:'+f1[key1]['last'] + '\r\n'+'% 24:'+str(pr) + '\r\n'+'/ 24:'+f1[key1]['high24hr'] + '\r\n'+'\ 24:'+f1[key1]['low24hr'] + '\r\n'
+					pr1= (float(f1[key1]['high24hr'])-float(f1[key1]['low24hr']))/(float(f1[key1]['low24hr'])*0.01) 
+					a3=a3+key1+' ls:'+f1[key1]['last'] + '\r\n'+'% 24:'+str(pr) + '\r\n'+'/ 24:'+f1[key1]['high24hr'] + '\r\n'+'\ 24:'+f1[key1]['low24hr'] + '\r\n'+'| 24:'+str(pr1) + '\r\n'
 	return a3
 
