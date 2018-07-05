@@ -20,6 +20,14 @@ def dg(currency):
   return (dg)
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
+#для каждой бирже общий преобрадователь данных 
+def pl_transform(a)
+  b=a
+  return b
+
+def bit_transform(a)
+  b=a
+  return b
 #покупка продажа
 
 #свершившиеся сделки
@@ -33,11 +41,11 @@ def hist(pair):
 def opord(bir,pair):
   if bir=='t':
     b3=api.getopenorders(pair)
-    ext=b3
+    ext=bit_transform(b3)
     
   elif bir=='p':
     p3=pl.opord(pair)
-    ext=p3
+    ext=pl_transform(p3)
   print (ext)
   return (ext)
 
