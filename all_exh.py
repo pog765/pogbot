@@ -21,11 +21,11 @@ def dg(currency):
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
 #для каждой бирже общий преобрадователь данных 
-def pl_transform(a)
+def pl_transform(a):
   b=a
   return b
 
-def bit_transform(a)
+def bit_transform(a):
   b=a
   return b
 #покупка продажа
