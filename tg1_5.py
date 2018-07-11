@@ -105,6 +105,30 @@ def first_all (v1):
     			f=f+cm[key]+'\r\n'
 		rst='Текущие команды:\r\n'+f+'\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance,K-kucoin'
 	return (rst)
+
+def 1last1(typ,pair,cou,bir):
+	r=ex.hist(bir,pair,cou)
+	g1,g2=last1_2(r)
+	g3=str()
+	if typ==1:
+		for i in g2:
+			g3=g3+i
+		g1=g3
+		g2=[]
+	else:
+		g1,g2=last1_2(r)
+	return (g1,g2)
+
+def 1last1_2(r):
+	g1=[]
+	g2=[]
+	for i in r:
+		s1=i['orderNumber']
+		s2=i['pair']+' '+i['total']+'\r\nкол-во: '+i['amount']+'\r\n'+i['type']+' цена: '+i['rate']+'\r\nord '+i['orderNumber']+'\r\n'
+		g1.append(s1)
+		g2.append(s2)
+	return (g1,g2)
+
 def last1(typ,pair,cou,bir):
 	if bir=='p':
 		r0=pl.hist(pair,cou)
