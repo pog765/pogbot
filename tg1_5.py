@@ -106,7 +106,7 @@ def first_all (v1):
 		rst='Текущие команды:\r\n'+f+'\r\nПеред командой нужно ставить букву необходимой биржи:\r\n\P-polo,T-bittrex,N-binance,K-kucoin'
 	return (rst)
 
-def 1last1(typ,pair,cou,bir):
+def a_last1(typ,pair,cou,bir):
 	r=ex.hist(bir,pair,cou)
 	g1,g2=last1_2(r)
 	g3=str()
@@ -119,7 +119,7 @@ def 1last1(typ,pair,cou,bir):
 		g1,g2=last1_2(r)
 	return (g1,g2)
 
-def 1last1_2(r):
+def a_last1_2(r):
 	g1=[]
 	g2=[]
 	for i in r:
