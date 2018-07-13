@@ -48,11 +48,36 @@ def bit_transform(a0,v):
 #покупка продажа
 
 #свершившиеся сделки
-def hist(pair):
-  b2=api.getorderhistory()
-  p2=pl.hist(pair,cou)
-  ext=0
-  return ext
+def hist0(pair,cou):
+    b2=bit_transform(api.getorderhistory(pair,cou),1)
+    p2=pl.hist(pair,cou)
+    ext=0
+    g=[]
+    for key in p2.keys():
+        for i in p2[key]:
+            i['pair']=key
+            g.append(i)
+        #print(p2[key][i]["globalTradeID"])
+    #sorted(d.items(), key=lambda x: x[1])
+    g=sorted(g,key= lambda d: d['globalTradeID'], reverse=True)
+    p2=pl_transform(g,1)
+    js_wr(b2,'b_h.json')
+    js_wr(p2,'p_h.json')
+    return ext
+
+def hist(bir,pair,cou):
+    if bir=='t':
+        ext=bit_transform(api.getorderhistory(pair,cou),1)
+    elif bir=='p':
+        p2=pl.hist(pair,cou)
+        g=[]
+        for key in p2.keys():
+            for i in p2[key]:
+                i['pair']=key
+                g.append(i)
+        g=sorted(g,key= lambda d: d['globalTradeID'], reverse=True)
+        ext=pl_transform(g,1)
+    return ext
 
 #открытые сделки
 def opord(bir,pair):
