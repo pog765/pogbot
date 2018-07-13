@@ -22,7 +22,7 @@ def dg(currency):
   return (dg)
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
-#для каждой бирже общий преобрадователь данных 
+#для каждой бирже общий преобрадователь входных(0),выходных(1) данных 
 def pl_transform(a,v):
     if v==0:
         b=a
