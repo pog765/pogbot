@@ -41,7 +41,7 @@ def bit_transform(a0,v):
             a['total']=str(a.pop('Price'))
             a['amount'] = str(a.pop('Quantity'))
             a['type'] = a.pop('OrderType').replace('LIMIT_BUY','buy').replace('LIMIT_SELL','sell')
-            a['rate']=str(a.pop('PricePerUnit'))
+            a['rate']=str(e_form(a.pop('PricePerUnit')))
 
         b=a0
 
