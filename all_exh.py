@@ -104,3 +104,12 @@ def bal():
   p5=pl.a1('returnBalances')
   ext=0
   return ext
+
+def js_wr(data,file):
+    with open(file,'w') as f:
+        json.dump(data,f,indent=2)
+
+def e_form(a):
+    return '{:f}'.format(a)
+
+#hist('p','all',10)
