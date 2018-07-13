@@ -111,6 +111,6 @@ def js_wr(data,file):
         json.dump(data,f,indent=2)
 
 def e_form(a):
-    return '{:f}'.format(a)
+    return "%.8f" % (a)
 
 #hist('p','all',10)
