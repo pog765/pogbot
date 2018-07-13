@@ -1,6 +1,7 @@
 from bit1 import bittrex as bit
 import pl6 as pl
 import config as cf
+import json
 
 # Get these from https://bittrex.com/Account/ManageApiKey
 api = bit(cf.bitap, cf.bitid)
