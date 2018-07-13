@@ -93,7 +93,7 @@ def first_all (v1):
 			par=wo[2]
 			par=par.upper()
 			# par='all'
-		rst,g2=last1(1,par,cou,bir)
+		rst,g2=a_last(1,par,cou,bir)
 	elif command==cm[10]:
 		rst=pl.ret_bal()
 	elif command==cm[11]:
