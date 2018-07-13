@@ -22,13 +22,29 @@ def dg(currency):
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
 #для каждой бирже общий преобрадователь данных 
-def pl_transform(a):
-  b=a
-  return b
+def pl_transform(a,v):
+    if v==0:
+        b=a
+    else:
+        b=a
+    return b
 
-def bit_transform(a):
-  b=a
-  return b
+def bit_transform(a0,v):
+    if v==0:
+        b=a0
+
+    else:
+        for a in a0:
+            a['orderNumber']=a.pop('OrderUuid')
+            a['pair'] = a.pop('Exchange').replace('BTC-','BTC_').replace('USDT-','USDT_')
+            a['total']=str(a.pop('Price'))
+            a['amount'] = str(a.pop('Quantity'))
+            a['type'] = a.pop('OrderType').replace('LIMIT_BUY','buy').replace('LIMIT_SELL','sell')
+            a['rate']=str(a.pop('PricePerUnit'))
+
+        b=a0
+
+    return b
 #покупка продажа
 
 #свершившиеся сделки
