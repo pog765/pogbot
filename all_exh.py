@@ -36,7 +36,7 @@ def bit_transform(a0,v):
 
     else:
         for a in a0:
-            print(type(a))
+            print(a)
             a['orderNumber']=a.pop('OrderUuid')
             a['pair'] = a.pop('Exchange').replace('BTC-','BTC_').replace('USDT-','USDT_')
             a['total']=str(a.pop('Price'))
