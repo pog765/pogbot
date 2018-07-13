@@ -8,7 +8,8 @@ api = bit(cf.bitap, cf.bitid)
 # Market to trade at
 trade = 'BTC'
 currency = 'BSD'
-market = '{0}-{1}'.format(trade, currency)
+bit_market = '{0}-{1}'.format(trade, currency)
+pl_market = '{0}_{1}'.format(trade, currency)
 # Amount of coins to buy
 amount = 100
 # How big of a profit you want to make
