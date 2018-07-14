@@ -98,7 +98,10 @@ class bittrex(object):
         return self.query('getorder', {'uuid': uuid})
 
     def getorderhistory(self, market, count):
-        return self.query('getorderhistory', {'market': market, 'count': count})
+        if market=='all':
+            return self.query('getorderhistory')
+        else:
+            return self.query('getorderhistory', {'market': market, 'count': count})
 
     def getwithdrawalhistory(self, currency, count):
         return self.query('getwithdrawalhistory', {'currency': currency, 'count': count})
