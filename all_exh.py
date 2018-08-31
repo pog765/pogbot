@@ -73,6 +73,7 @@ def hist(bir,pair,cou):
         ext=bit_transform(api.getorderhistory(pair,cou),1)
     elif bir=='p':
         p2=pl.hist(pair,cou)
+        print(p2)
         g=[]
         for key in p2.keys():
             for i in p2[key]:
@@ -80,6 +81,7 @@ def hist(bir,pair,cou):
                 g.append(i)
         g=sorted(g,key= lambda d: d['globalTradeID'], reverse=True)
         ext=pl_transform(g,1)
+        print(ext)
     return ext
 
 #открытые сделки
