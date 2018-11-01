@@ -129,14 +129,7 @@ def a_last(typ,pair,cou,bir):
 
 
 def last1(typ,pair,cou,bir):
-	if bir=='p':
-		r0=pl.hist(pair,cou)
-	elif bir=='t':
-		r0=pl.hist(pair,cou)
-	elif bir=='n':
-		r0=pl.hist(pair,cou)
-	else:
-		r0=pl.hist(pair,cou)
+	r0=pl.hist(pair,cou)
 
 	g=str()
 	#print(r0)
@@ -506,6 +499,7 @@ def main():
 
 		if u==60:
 			pre_alg('p')
+			pre_alg('t')
 
 			#alg1()
 			#dat=bd.sql('SELECT * FROM public.alg_data LIMIT 3')
