@@ -21,6 +21,7 @@ last_id=0
 ord_id=0
 a=config.pap
 b=config.pid
+ord_bir_id={'p':'0','t':'0'}
 
 def get_updates_j():
 	url1 = url+'getUpdates'
@@ -121,8 +122,9 @@ def a_last(typ,pair,cou,bir):
 			g3=g3+i
 		g1=g3
 		g2=[]
-	else:
-		g1,g2=last1_2(r)
+	if typ==2:
+		g1=g1
+		g2=g2
 	return (g1,g2)
 
 
@@ -268,22 +270,23 @@ def alg01(bir):
 	#повтор
 def re_arg01(bir):
 	return (bir)
-def trade_ntf(n1,n2):
+def trade_ntf(n1,n2,bir):
 	#создать новою переменную
 	#при доавление биржы переменную нужно перобразовать в массив
 	global ord_id
 	#print(ord_id)
 	#print(type(n1))
 	#print(n1)
-	if ord_id!=n1[0]:
-		if ord_id==0:
-			ord_id=n1[0]
+	if ord_bir_id[bir]!=n1[0]:
+		if ord_bir_id[bir]=='0':
+			ord_bir_id[bir]=n1[0]
+
 		else:
 			#узнаем сколько заявок до ord_id
-			f1=n1.index(ord_id)
+			f1=n1.index(ord_bir_id[bir])
 			#срез до ord_id
 			n2=n2[:f1]
-			ord_id=n1[0]
+			ord_bir_id[bir]=n1[0]
 			i=0
 			y=str()
 			while i<len(n2):
@@ -296,11 +299,13 @@ def trade_ntf(n1,n2):
 
 def pre_alg(bir):
 	#берем id n-последнии свершихся сделок
-	n1,n2=last1(2,'all',config.n_ord_count,bir)
-	
-	re=alg1(bir,n1)
+	re='ok'
+	n1,n2=a_last(2,'all',config.n_ord_count,bir)
+	if bir=='p':
+		re=alg1(bir,n1)
+
 	if len(n1)!=0:
-		f=trade_ntf(n1,n2) 
+		f=trade_ntf(n1,n2,bir)
 	try:
 		
 		pass
