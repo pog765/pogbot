@@ -449,14 +449,18 @@ def get_mes():
 	if data['ok']==True:
 		print(data)
 		if len(data['result'])>0:
-			m_id=data['result'][-1]['message']['chat']['id']
-			m_txt=data['result'][-1]['message']['text']
-			m_upd=data['result'][-1]['update_id']
-			global last_id
-			if last_id!=m_upd:
-				last_id=m_upd
-				ms = {'chat_id': m_id, 'text': m_txt ,'upd_id':m_upd}
-				return ms
+			try:
+				m_id=data['result'][-1]['message']['chat']['id']
+				m_txt=data['result'][-1]['message']['text']
+				m_upd=data['result'][-1]['update_id']
+				global last_id
+				if last_id!=m_upd:
+					last_id=m_upd
+					ms = {'chat_id': m_id, 'text': m_txt ,'upd_id':m_upd}
+					return ms
+			except:
+				pass
+				
 	return None
 def send_m (chat_id,text='wait'):
 	url1=url+'sendmessage?chat_id={}&text={}'.format(chat_id,text)
