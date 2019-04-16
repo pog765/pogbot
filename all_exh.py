@@ -18,7 +18,7 @@ multiplier = 1.1
 
 def dg(currency):
   dg = api.getbalance(currency)
-  print(dg)
+  #print(dg)
   return (dg)
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
@@ -35,7 +35,7 @@ def bit_transform(a0,v):
         b=a0
 
     else:
-        print(type(a0),a0)
+        #print(type(a0),a0)
         for a in a0:
             #print(a)
             try:
