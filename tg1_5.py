@@ -211,7 +211,7 @@ def cre_ord(wo,dlina,command):
 			nn=round(nn,3)
 		price=str(wo[2])
 
-		print(val,price,nn,command)
+		#print(val,price,nn,command)
 		if command=='sell':
 			ord=pl.sell(val,price,nn)
 		else:
