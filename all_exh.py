@@ -46,6 +46,7 @@ def bit_transform(a0,v):
               a['type'] = a.pop('OrderType').replace('LIMIT_BUY','buy').replace('LIMIT_SELL','sell')
               a['rate']=str(e_form(a.pop('PricePerUnit')))
             except Exception:
+              print(a)
               pass
         b=a0
 
