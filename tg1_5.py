@@ -243,7 +243,7 @@ def alg01(bir):
 			am=rou(rou(o3[i][6])/rou(o3[i][4]))
 			#print('buy',o3[i][2],rou(o3[i][4]),am)
 			ord=pl.buy(o3[i][2],rou(o3[i][4]),am)
-			print(ord)
+			#print(ord)
 			ido=int(ord['orderNumber'])
 			o3[i][0]=ido
 			o3[i][5]=am
@@ -256,7 +256,7 @@ def alg01(bir):
 	while i<len(o3):
 		u1='update public.alg_data set ido={} ,dt_last=current_date where idp={};commit;'.format(o3[i][0],o3[i][1])
 		i=i+1
-		print(u1)
+		#print(u1)
 		dat=bd.sql(u1)
 	#dat=bd.sql(u1)
 	return ('ok')
@@ -326,7 +326,7 @@ def alg1(bir,n1):
 				y=list(dat[i])
 				o3.append(y)
 			i+=1
-	print(o3)
+	#print(o3)
 	#разобраться с комимсиями и где что умножать что бы получить исодное значение в бтс(родителе)
 	#ставим новый обратный ордер на основе о3
 	#dat=.replace('Decimal(','')
@@ -359,9 +359,9 @@ def alg1(bir,n1):
 			else:
 				price=rou(o3[i][4])
 			am=rou(rou(o3[i][6])/price)
-			print('buy',o3[i][2],price,am)
+			#print('buy',o3[i][2],price,am)
 			ord=pl.buy(o3[i][2],price,am)
-			print(ord)
+			#print(ord)
 			ido=int(ord['orderNumber'])
 			o3[i][0]=ido
 			o3[i][5]=am
@@ -372,7 +372,7 @@ def alg1(bir,n1):
 	while i<len(o3):
 		u1='update public.alg_data set ido={},amount_c={},amount_p={},last_type={},circle=case when last_type=1 then circle+1 else circle  end ,dt_last=current_date where idp={};commit;'.format(o3[i][0],o3[i][5],o3[i][6],o3[i][7],o3[i][1])
 		i+=1
-		print(u1)
+		#print(u1)
 		dat=bd.sql(u1)
 	if len(c)>0:
 		send_m(config.tid,'trade в alg1')
@@ -439,7 +439,7 @@ def sell1(wo):
 
 		dat=bd.sql(n5)
 	n6="update public.alg_data set amount_c=amount_p/val_sell,val_buy=val_sell-(val_sell*0.0"+str(n4)+") where pair='"+para+"' and alg=1 and dt_last is null;commit;"
-	print(n6)
+	#print(n6)
 	dat=bd.sql(n6)
 	a='ок'
 	return (a)
@@ -447,7 +447,7 @@ def get_mes():
 	data=get_updates_j()
 	
 	if data['ok']==True:
-		print(data)
+		#print(data)
 		if len(data['result'])>0:
 			try:
 				m_id=data['result'][-1]['message']['chat']['id']
