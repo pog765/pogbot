@@ -22,7 +22,7 @@ def dg(currency):
   return (dg)
 
 #https://support.bittrex.com/hc/en-us/articles/115003723911
-#для каждой бирже общий преобрадователь входных(0),выходных(1) данных 
+#для каждой бирже общий преобразователь входных(0),выходных(1) данных 
 def pl_transform(a,v):
     if v==0:
         b=a
@@ -38,13 +38,15 @@ def bit_transform(a0,v):
         print(type(a0),a0)
         for a in a0:
             #print(a)
-            a['orderNumber']=a.pop('OrderUuid')
-            a['pair'] = a.pop('Exchange').replace('BTC-','BTC_').replace('USDT-','USDT_')
-            a['total']=str(a.pop('Price'))
-            a['amount'] = str(a.pop('Quantity'))
-            a['type'] = a.pop('OrderType').replace('LIMIT_BUY','buy').replace('LIMIT_SELL','sell')
-            a['rate']=str(e_form(a.pop('PricePerUnit')))
-
+            try:
+              a['orderNumber']=a.pop('OrderUuid')
+              a['pair'] = a.pop('Exchange').replace('BTC-','BTC_').replace('USDT-','USDT_')
+              a['total']=str(a.pop('Price'))
+              a['amount'] = str(a.pop('Quantity'))
+              a['type'] = a.pop('OrderType').replace('LIMIT_BUY','buy').replace('LIMIT_SELL','sell')
+              a['rate']=str(e_form(a.pop('PricePerUnit')))
+            except Exception:
+              pass
         b=a0
 
     return b
